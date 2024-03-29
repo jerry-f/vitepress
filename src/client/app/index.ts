@@ -103,6 +103,7 @@ function newRouter(): Router {
 
   return createRouter((path) => {
     let pageFilePath = pathToFile(path)
+    console.log('pageFilePath:', pageFilePath)
 
     if (isInitialPageLoad) {
       initialPath = pageFilePath
@@ -118,6 +119,7 @@ function newRouter(): Router {
     if (inBrowser) {
       isInitialPageLoad = false
     }
+    console.log('inBrowser:', inBrowser, pageFilePath)
 
     return import(/*@vite-ignore*/ pageFilePath)
   }, NotFound)

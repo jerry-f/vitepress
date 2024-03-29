@@ -72,7 +72,9 @@ export function createRouter(
     const targetLoc = new URL(href, fakeHost)
     const pendingPath = (latestPendingPath = targetLoc.pathname)
     try {
+      console.log('pendingPath', pendingPath)
       let page = await loadPageModule(pendingPath)
+      console.log('page:', page)
       if (latestPendingPath === pendingPath) {
         latestPendingPath = null
 
@@ -108,6 +110,7 @@ export function createRouter(
         }
       }
     } catch (err: any) {
+      console.log('fei error:', err, arguments)
       if (!/fetch/.test(err.message) && !/^\/404(\.html|\/)?$/.test(href)) {
         console.error(err)
       }
